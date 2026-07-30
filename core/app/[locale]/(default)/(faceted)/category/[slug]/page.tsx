@@ -10,6 +10,8 @@ import { createCompareLoader } from '@/vibes/soul/primitives/compare-drawer/load
 import { ProductsListSection } from '@/vibes/soul/sections/products-list-section';
 import { getFilterParsers } from '@/vibes/soul/sections/products-list-section/filter-parsers';
 import { getSessionCustomerAccessToken } from '~/auth';
+import { SubcategoryList } from '~/components/subcategory-list';
+import { getSubcategories } from '~/components/subcategory-list/component-data';
 import { facetsTransformer } from '~/data-transformers/facets-transformer';
 import { pageInfoTransformer } from '~/data-transformers/page-info-transformer';
 import { productCardTransformer } from '~/data-transformers/product-card-transformer';
@@ -251,6 +253,17 @@ export default async function Category(props: Props) {
       href: product.path,
     }));
   });
+
+  const subcategories = await getSubcategories(
+    {
+      categoryId: Number(slug),
+    },
+    customerAccessToken,
+  );
+
+  if (subcategories.length > 0) {
+    return <SubcategoryList subcategories={subcategories} title={category.name} />;
+  }
 
   return (
     <>
