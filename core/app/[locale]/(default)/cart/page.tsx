@@ -2,8 +2,10 @@ import { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { Streamable } from '@/vibes/soul/lib/streamable';
+import { Price } from '@/vibes/soul/primitives/price-label';
 import { Cart as CartComponent, CartEmptyState } from '@/vibes/soul/sections/cart';
 import { CartAnalyticsProvider } from '~/app/[locale]/(default)/cart/_components/cart-analytics-provider';
+import { pricesTransformer } from '~/data-transformers/prices-transformer';
 import { getCartId } from '~/lib/cart';
 import { getPreferredCurrencyCode } from '~/lib/currency';
 import { getMakeswiftPageMetadata } from '~/lib/makeswift';
@@ -101,6 +103,8 @@ export default async function Cart({ params }: Props) {
     return emptyState;
   }
 
+  const taxIncluded = cart.isTaxIncluded;
+
   const lineItems = [
     ...cart.lineItems.giftCertificates,
     ...cart.lineItems.physicalItems,
@@ -112,7 +116,7 @@ export default async function Cart({ params }: Props) {
       return {
         typename: item.__typename,
         id: item.entityId,
-        title: item.name,
+        title: t('GiftCertificate.giftCertificate'),
         subtitle: `${t('GiftCertificate.to')}: ${item.recipient.name} (${item.recipient.email})${item.message ? `, ${t('GiftCertificate.message')}: ${item.message}` : ''}`,
         quantity: 1,
         price: format.number(item.amount.value, {
@@ -170,18 +174,19 @@ export default async function Cart({ params }: Props) {
       }
     }
 
+    const catalogProduct = item.catalogProductWithOptionSelections;
+    const price: Price =
+      (catalogProduct && pricesTransformer(catalogProduct, format, taxIncluded ? 'INC' : 'EX')) ??
+      format.number(item.listPrice.value, {
+        style: 'currency',
+        currency: item.listPrice.currencyCode,
+      });
+
     return {
       typename: item.__typename,
       id: item.entityId,
       quantity: item.quantity,
-      price: format.number(item.listPrice.value, {
-        style: 'currency',
-        currency: item.listPrice.currencyCode,
-      }),
-      salePrice: format.number(item.salePrice.value, {
-        style: 'currency',
-        currency: item.salePrice.currencyCode,
-      }),
+      price,
       subtitle: item.selectedOptions
         .map((option) => {
           switch (option.__typename) {
@@ -216,6 +221,13 @@ export default async function Cart({ params }: Props) {
 
   const totalCouponDiscount =
     checkout?.coupons.reduce((sum, coupon) => sum + coupon.discountedAmount.value, 0) ?? 0;
+
+  const totalLineItemDiscount = [
+    ...cart.lineItems.physicalItems,
+    ...cart.lineItems.digitalItems,
+  ].reduce((sum, item) => sum + item.discountedAmount.value, 0);
+
+  const totalDiscount = cart.discountedAmount.value + totalLineItemDiscount;
 
   const giftCertificatesSummary =
     checkout?.giftCertificates.reduce<Array<{ code: string; used: number }>>((acc, c) => {
@@ -275,6 +287,15 @@ export default async function Cart({ params }: Props) {
               currency: cart.currencyCode,
             }),
             totalLabel: t('CheckoutSummary.total'),
+            totalSubtitle:
+              taxIncluded && checkout?.taxTotal
+                ? t('CheckoutSummary.totalIncludesTax', {
+                    tax: format.number(checkout.taxTotal.value, {
+                      style: 'currency',
+                      currency: cart.currencyCode,
+                    }),
+                  })
+                : undefined,
             summaryItems: [
               {
                 label: t('CheckoutSummary.subTotal'),
@@ -283,10 +304,10 @@ export default async function Cart({ params }: Props) {
                   currency: cart.currencyCode,
                 }),
               },
-              cart.discountedAmount.value > 0
+              totalDiscount > 0
                 ? {
                     label: t('CheckoutSummary.discounts'),
-                    value: `-${format.number(cart.discountedAmount.value, {
+                    value: `-${format.number(totalDiscount, {
                       style: 'currency',
                       currency: cart.currencyCode,
                     })}`,
@@ -308,13 +329,15 @@ export default async function Cart({ params }: Props) {
                   currency: cart.currencyCode,
                 })}`,
               })),
-              checkout?.taxTotal && {
-                label: t('CheckoutSummary.tax'),
-                value: format.number(checkout.taxTotal.value, {
-                  style: 'currency',
-                  currency: cart.currencyCode,
-                }),
-              },
+              !taxIncluded && checkout?.taxTotal
+                ? {
+                    label: t('CheckoutSummary.tax'),
+                    value: format.number(checkout.taxTotal.value, {
+                      style: 'currency',
+                      currency: cart.currencyCode,
+                    }),
+                  }
+                : null,
             ].filter(exists),
           }}
           checkoutAction={CHECKOUT_URL}
@@ -346,7 +369,9 @@ export default async function Cart({ params }: Props) {
               : undefined
           }
           incrementLineItemLabel={t('increment')}
-          key={`${cart.entityId}-${cart.version}`}
+          // Keyed by entityId only; keying by version too would remount the section on
+          // every mutation (see the pending-intent dispatcher notes in the Cart section).
+          key={cart.entityId}
           lineItemAction={updateLineItem}
           lineItemActionPendingLabel={t('cartUpdateInProgress')}
           shipping={{
@@ -391,7 +416,9 @@ export default async function Cart({ params }: Props) {
                 }
               : undefined,
             showShippingForm,
-            shippingLabel: t('CheckoutSummary.Shipping.shipping'),
+            shippingLabel: taxIncluded
+              ? t('CheckoutSummary.Shipping.shippingExcludingTax')
+              : t('CheckoutSummary.Shipping.shipping'),
             addLabel: t('CheckoutSummary.Shipping.add'),
             changeLabel: t('CheckoutSummary.Shipping.change'),
             countryLabel: t('CheckoutSummary.Shipping.country'),

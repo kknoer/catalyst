@@ -435,6 +435,7 @@
             "subTotal": "小計",
             "discounts": "割引",
             "tax": "税金",
+            "totalIncludesTax": "税金{tax}を含む",
             "total": "合計",
             "CouponCode": {
                 "apply": "適用",
@@ -445,6 +446,7 @@
             },
             "Shipping": {
                 "shipping": "配送",
+                "shippingExcludingTax": "送料 (例)税）",
                 "add": "追加",
                 "change": "変更する",
                 "cancel": "キャンセル",
@@ -500,6 +502,8 @@
         "otherDetails": "その他の詳細",
         "noOtherDetails": "他に詳細はありません。",
         "viewOptions": "表示オプション",
+        "showMore": "さらに表示する",
+        "showLess": "表示を少なくする",
         "successMessage": "{cartItems, plural, =1 {1個の商品} other {#個の商品}}が<cartLink>カート</cartLink>に追加されました",
         "missingCart": "カートが見つかりません。しばらくしてから再度お試しください。",
         "unknownError": "不明なエラーです。しばらくしてから再度お試しください。"
@@ -522,6 +526,11 @@
             "backorderQuantity": "{quantity, number} はバックオーダーになります",
             "loadingMoreImages": "さらに画像を読み込んでいます",
             "imagesLoaded": "{count, plural, =1 {1 枚の画像が読み込まれました} other {#枚の画像が読み込まれました}}",
+            "playVideo": "動画を再生",
+            "viewVideo": "動画を視聴",
+            "videosTitle": "ビデオ",
+            "hideVideos": "動画を非表示",
+            "showVideos": "動画を表示",
             "Submit": {
                 "addToCart": "カートに追加",
                 "outOfStock": "品切れ",
@@ -702,7 +711,11 @@
         "Price": {
             "originalPrice": "元の価格は{price}でした。",
             "currentPrice": "現在の価格は{price}です。",
-            "range": "価格は{minValue}から{maxValue}までです。"
+            "range": "価格は{minValue}から{maxValue}までです。",
+            "includingTax": "(株式会社)税）",
+            "excludingTax": "（元。税）",
+            "includingTaxFull": "税込",
+            "excludingTaxFull": "税別"
         }
     },
     "GiftCertificates": {

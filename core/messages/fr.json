@@ -435,6 +435,7 @@
             "subTotal": "Sous-total",
             "discounts": "Remises",
             "tax": "Taxes",
+            "totalIncludesTax": "Taxes {tax} incluses",
             "total": "Total",
             "CouponCode": {
                 "apply": "Appliquer",
@@ -445,6 +446,7 @@
             },
             "Shipping": {
                 "shipping": "Livraison",
+                "shippingExcludingTax": "Frais de port (hors taxes)",
                 "add": "Ajouter",
                 "change": "Modifier",
                 "cancel": "Annuler",
@@ -500,6 +502,8 @@
         "otherDetails": "Autres informations",
         "noOtherDetails": "Aucune information supplémentaire.",
         "viewOptions": "Afficher les options",
+        "showMore": "Voir plus",
+        "showLess": "Voir moins",
         "successMessage": "{cartItems, plural, =1 {1 article} other {# articles}} ajouté(s) à <cartLink>votre panier</cartLink>",
         "missingCart": "Panier introuvable. Veuillez réessayer plus tard.",
         "unknownError": "Erreur inconnue. Veuillez réessayer plus tard."
@@ -522,6 +526,11 @@
             "backorderQuantity": "{quantité, nombre} en attente de réapprovisionnement",
             "loadingMoreImages": "Chargement de plus d'images",
             "imagesLoaded": "{count, plural, =1 {1 image supplémentaire chargée} other {# images supplémentaires chargées}}",
+            "playVideo": "Lancer la vidéo",
+            "viewVideo": "Voir la vidéo",
+            "videosTitle": "Vidéos",
+            "hideVideos": "Masquer les vidéos",
+            "showVideos": "Afficher les vidéos",
             "Submit": {
                 "addToCart": "Ajouter au panier",
                 "outOfStock": "En rupture de stock",
@@ -702,7 +711,11 @@
         "Price": {
             "originalPrice": "Le prix initial était de {price}.",
             "currentPrice": "Le prix actuel est de {price}.",
-            "range": "Prix de {minValue} à {maxValue}."
+            "range": "Prix de {minValue} à {maxValue}.",
+            "includingTax": "(toutes taxes comprises)",
+            "excludingTax": "(hors taxes)",
+            "includingTaxFull": "Toutes taxes comprises",
+            "excludingTaxFull": "Hors taxes"
         }
     },
     "GiftCertificates": {

@@ -75,7 +75,7 @@
             "CreateAccount": {
                 "title": "Nowy klient?",
                 "accountBenefits": "Załóż u nas konto, a będziesz mógł:",
-                "fastCheckout": "Sprawdź szybciej",
+                "fastCheckout": "Do kasy szybciej",
                 "multipleAddresses": "Zapisz wiele adresów wysyłki",
                 "ordersHistory": "Dostęp do historii zamówień",
                 "ordersTracking": "Śledzenie nowych zamówień",
@@ -435,6 +435,7 @@
             "subTotal": "Suma cząstkowa",
             "discounts": "Rabaty",
             "tax": "Podatek",
+            "totalIncludesTax": "Includes {tax} tax",
             "total": "Razem",
             "CouponCode": {
                 "apply": "Zgłoś się na",
@@ -445,6 +446,7 @@
             },
             "Shipping": {
                 "shipping": "Wysyłka",
+                "shippingExcludingTax": "Shipping (Ex. Tax)",
                 "add": "Dodaj",
                 "change": "Zmiana",
                 "cancel": "Anuluj",
@@ -500,6 +502,8 @@
         "otherDetails": "Inne szczegóły",
         "noOtherDetails": "Brak innych szczegółów.",
         "viewOptions": "Wyświetl opcje",
+        "showMore": "Pokaż więcej",
+        "showLess": "Pokaż mniej",
         "successMessage": "Dodano {cartItems, plural, =1 {1 produkt} other {# produkty(-ów)}} <cartLink>do koszyka</cartLink>",
         "missingCart": "Nie znaleziono koszyka. Spróbuj ponownie później.",
         "unknownError": "Nieznany błąd. Spróbuj ponownie później."
@@ -522,6 +526,11 @@
             "backorderQuantity": "{quantity, number} will be on backorder",
             "loadingMoreImages": "Loading more images",
             "imagesLoaded": "{count, plural, =1 {1 more image loaded} other {# more images loaded}}",
+            "playVideo": "Play video",
+            "viewVideo": "View video",
+            "videosTitle": "Wideo",
+            "hideVideos": "Hide videos",
+            "showVideos": "Show videos",
             "Submit": {
                 "addToCart": "Dodaj do koszyka",
                 "outOfStock": "Brak w magazynie",
@@ -702,7 +711,11 @@
         "Price": {
             "originalPrice": "Original price was {price}.",
             "currentPrice": "Current price is {price}.",
-            "range": "Price from {minValue} to {maxValue}."
+            "range": "Price from {minValue} to {maxValue}.",
+            "includingTax": "(Inc. Tax)",
+            "excludingTax": "(Ex. Tax)",
+            "includingTaxFull": "Z uwzględnieniem podatku",
+            "excludingTaxFull": "Bez podatku"
         }
     },
     "GiftCertificates": {

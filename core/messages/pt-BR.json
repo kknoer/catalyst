@@ -435,6 +435,7 @@
             "subTotal": "Subtotal",
             "discounts": "Descontos",
             "tax": "Imposto",
+            "totalIncludesTax": "Includes {tax} tax",
             "total": "Total",
             "CouponCode": {
                 "apply": "Aplicar",
@@ -445,6 +446,7 @@
             },
             "Shipping": {
                 "shipping": "Envio",
+                "shippingExcludingTax": "Shipping (Ex. Tax)",
                 "add": "Adicionar",
                 "change": "Alterar",
                 "cancel": "Cancelar",
@@ -500,6 +502,8 @@
         "otherDetails": "Outros detalhes",
         "noOtherDetails": "Não há outros detalhes.",
         "viewOptions": "Ver opções",
+        "showMore": "Mostrar mais",
+        "showLess": "Mostrar menos",
         "successMessage": "{cartItems, plural, =1 {1 item} other {# itens}} adicionado(s) <cartLink> ao carrinho</cartLink>",
         "missingCart": "Carrinho não encontrado. Tente novamente mais tarde.",
         "unknownError": "Erro desconhecido. Tente novamente mais tarde."
@@ -522,6 +526,11 @@
             "backorderQuantity": "{quantity, number} will be on backorder",
             "loadingMoreImages": "Loading more images",
             "imagesLoaded": "{count, plural, =1 {1 more image loaded} other {# more images loaded}}",
+            "playVideo": "Play video",
+            "viewVideo": "View video",
+            "videosTitle": "Vídeos",
+            "hideVideos": "Hide videos",
+            "showVideos": "Show videos",
             "Submit": {
                 "addToCart": "Adicionar ao carrinho",
                 "outOfStock": "Fora do estoque",
@@ -702,7 +711,11 @@
         "Price": {
             "originalPrice": "Original price was {price}.",
             "currentPrice": "Current price is {price}.",
-            "range": "Price from {minValue} to {maxValue}."
+            "range": "Price from {minValue} to {maxValue}.",
+            "includingTax": "(Inc. Tax)",
+            "excludingTax": "(Ex. Tax)",
+            "includingTaxFull": "Incluir impostos",
+            "excludingTaxFull": "Excluir impostos"
         }
     },
     "GiftCertificates": {

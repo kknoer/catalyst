@@ -27,6 +27,7 @@ const SettingsQuery = graphql(`
         locales {
           code
           isDefault
+          path
         }
       }
     }
@@ -66,6 +67,10 @@ export default async (): Promise<NextConfig> => {
     reactStrictMode: true,
     experimental: {
       optimizePackageImports: ['@icons-pack/react-simple-icons'],
+    },
+    images: {
+      // Allow product-video poster thumbnails (YouTube) through next/image.
+      remotePatterns: [{ protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' }],
     },
     typescript: {
       ignoreBuildErrors: !!process.env.CI,

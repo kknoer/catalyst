@@ -13,6 +13,7 @@ const CategoryPageQuery = graphql(
           entityId
           name
           path
+          defaultProductSort
           ...BreadcrumbsFragment
           seo {
             pageTitle
@@ -51,6 +52,9 @@ const CategoryPageQuery = graphql(
           }
           reviews {
             enabled
+          }
+          tax {
+            plp
           }
         }
       }

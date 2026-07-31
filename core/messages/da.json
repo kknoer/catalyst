@@ -435,6 +435,7 @@
             "subTotal": "Subtotal",
             "discounts": "Rabatter",
             "tax": "Moms",
+            "totalIncludesTax": "Inklusiv {tax} moms",
             "total": "I alt",
             "CouponCode": {
                 "apply": "Anvend",
@@ -445,6 +446,7 @@
             },
             "Shipping": {
                 "shipping": "Forsendelse",
+                "shippingExcludingTax": "Forsendelse (ekskl. moms)",
                 "add": "Tilføj",
                 "change": "Ændr",
                 "cancel": "Annuller",
@@ -500,6 +502,8 @@
         "otherDetails": "Andre oplysninger",
         "noOtherDetails": "Der er ingen andre oplysninger.",
         "viewOptions": "Se muligheder",
+        "showMore": "Vis flere",
+        "showLess": "Vis mindre",
         "successMessage": "{cartItems, plural, =1 {1 vare} other {# varer}} tilføjet til <cartLink>din indkøbskurv</cartLink>",
         "missingCart": "Indkøbskurven blev ikke fundet. Prøv igen senere.",
         "unknownError": "Ukendt fejl. Prøv igen senere."
@@ -522,6 +526,11 @@
             "backorderQuantity": "{antal, number} vil være i restordre",
             "loadingMoreImages": "Indlæser flere billeder",
             "imagesLoaded": "{count, plural, =1 {1 yderligere billede indlæst} other {# yderligere billeder indlæst}}",
+            "playVideo": "Afspil video",
+            "viewVideo": "Se video",
+            "videosTitle": "Videoer",
+            "hideVideos": "Skjul videoer",
+            "showVideos": "Vis videoer",
             "Submit": {
                 "addToCart": "Føj til kurv",
                 "outOfStock": "Udsolgt",
@@ -642,7 +651,7 @@
         },
         "Footer": {
             "home": "Hjem",
-            "contactUs": "kontakte os",
+            "contactUs": "Kontakt os",
             "socialMediaLinks": "Links til sociale medier",
             "categories": "Kategorier",
             "brands": "mærker",
@@ -702,7 +711,11 @@
         "Price": {
             "originalPrice": "Den oprindelige pris var {price}.",
             "currentPrice": "Den aktuelle pris er {price}.",
-            "range": "Pris fra {minValue} til {maxValue}."
+            "range": "Pris fra {minValue} til {maxValue}.",
+            "includingTax": "(Inkl. moms)",
+            "excludingTax": "(Ekskl. moms)",
+            "includingTaxFull": "Inklusiv skat",
+            "excludingTaxFull": "Eksklusiv skat"
         }
     },
     "GiftCertificates": {

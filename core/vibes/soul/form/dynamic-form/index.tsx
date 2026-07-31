@@ -241,7 +241,7 @@ function SubmitButton({
   );
 }
 
-function DynamicFormField({
+export function DynamicFormField({
   field,
   formField,
 }: {
@@ -449,5 +449,8 @@ function DynamicFormField({
           selected={typeof controls.value === 'string' ? new Date(controls.value) : undefined}
         />
       );
+
+    case 'hidden':
+      return <input {...getInputProps(formField, { type: 'hidden' })} key={field.name} />;
   }
 }
