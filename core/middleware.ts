@@ -7,7 +7,7 @@ import { withIntl } from './proxies/with-intl';
 import { withMakeswift } from './proxies/with-makeswift';
 import { withRoutes } from './proxies/with-routes';
 
-export const proxy = composeProxies(
+export const middleware = composeProxies(
   withAuth,
   withMakeswift,
   withIntl,
@@ -18,6 +18,7 @@ export const proxy = composeProxies(
 );
 
 export const config = {
+  runtime: 'experimental-edge',
   matcher: [
     /*
      * Match all request paths except for the ones starting with:

@@ -277,7 +277,7 @@ const PrivateSortParam = z.union([
 const PublicSortParam = z.string().toUpperCase().pipe(PrivateSortParam);
 
 const SearchProductsFiltersInputSchema = z.object({
-  brandEntityIds: z.array(z.number()).nullish(,)c
+  brandEntityIds: z.array(z.number()).nullish(),
   categoryEntityId: z.number().nullish(),
   categoryEntityIds: z.array(z.number()).nullish(),
   hideOutOfStock: z.boolean().nullish(),
